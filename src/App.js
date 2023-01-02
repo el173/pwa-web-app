@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  useEffect(() => {
+    const messageListener = window.addEventListener('message', (e) => {
+      alert(JSON.stringify(e.data));
+    });
+    return messageListener;
+  }, []);
 
   const sendMessage = () => {
     window.ReactNativeWebView.postMessage('Hi from PWA');
